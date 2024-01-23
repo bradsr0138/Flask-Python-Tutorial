@@ -35,8 +35,12 @@
         <div class="navbar-nav">
           <!-- Conditional navigation links based on user authentication status. -->
           {% if user.is_authenticated %}
+          <!--This line of code creates a link to the "Home" page in a navigation bar. The "a" tag is used to create a hyperlink, 
+          and the "class" attribute is used for styling the link. The "id" attribute is used to uniquely identify the link, and 
+          the "href" attribute specifies the URL of the "Home" page.-->
           <a class="nav-item nav-link" id="home" href="/">Home</a>
           <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
+           <a class="nav-item nav-link" id="data" href="/data">Data</a> <!-- New link for the "Data" page -->
           {% else %}
           <a class="nav-item nav-link" id="login" href="/login">Login</a>
           <a class="nav-item nav-link" id="signUp" href="/sign-up">Sign Up</a>
