@@ -1,21 +1,39 @@
-{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
-%}
+<!-- The following code extends a base HTML template. -->
+{% extends "base.html" %}
+
+<!-- This section defines the title of the page, which will be "Home". -->
+{% block title %}Home{% endblock %}
+
+<!-- This section defines the content of the page. -->
+{% block content %}
 <h1 align="center">Notes</h1>
+
+<!-- Unordered list for displaying a list of notes. -->
 <ul class="list-group list-group-flush" id="notes">
   {% for note in user.notes %}
+  <!-- List item for each note with a close button for deleting. -->
   <li class="list-group-item">
+    <!-- Display the note data. -->
     {{ note.data }}
+    <!-- Close button with an onClick event to trigger note deletion. -->
     <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+      <!-- Symbol '×' for closing. -->
       <span aria-hidden="true">&times;</span>
     </button>
   </li>
   {% endfor %}
 </ul>
+
+<!-- Form for adding a new note. -->
 <form method="POST">
+  <!-- Textarea for entering the note content. -->
   <textarea name="note" id="note" class="form-control"></textarea>
   <br />
+  <!-- Button for submitting the new note. -->
   <div align="center">
     <button type="submit" class="btn btn-primary">Add Note</button>
   </div>
 </form>
+<!-- End of the content block. -->
 {% endblock %}
+

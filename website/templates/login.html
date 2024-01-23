@@ -1,9 +1,18 @@
-{% extends "base.html" %} {% block title %}Login{% endblock %} {% block content
-%}
+<!-- The following code extends a base HTML template. -->
+{% extends "base.html" %}
+
+<!-- This section defines the title of the page, which will be "Login". -->
+{% block title %}Login{% endblock %}
+
+<!-- This section defines the content of the page. -->
+{% block content %}
 <form method="POST">
+  <!-- A heading for the login form with center alignment. -->
   <h3 align="center">Login</h3>
   <div class="form-group">
+    <!-- Label for the email input field. -->
     <label for="email">Email Address</label>
+    <!-- Input field for the user to enter their email. -->
     <input
       type="email"
       class="form-control"
@@ -13,7 +22,9 @@
     />
   </div>
   <div class="form-group">
+    <!-- Label for the password input field. -->
     <label for="password">Password</label>
+    <!-- Input field for the user to enter their password. -->
     <input
       type="password"
       class="form-control"
@@ -23,6 +34,9 @@
     />
   </div>
   <br />
+  <!-- A button for submitting the login form. -->
   <button type="submit" class="btn btn-primary">Login</button>
 </form>
+<!-- End of the content block. -->
 {% endblock %}
+

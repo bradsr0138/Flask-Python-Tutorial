@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <!-- Character encoding and viewport settings for the page. -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Bootstrap CSS and Font Awesome CSS for styling. -->
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -14,11 +16,13 @@
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
       crossorigin="anonymous"
     />
-
+    <!-- Title of the page with a default of "Home". -->
     <title>{% block title %}Home{% endblock %}</title>
   </head>
   <body>
+    <!-- Navigation bar with Bootstrap styling. -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <!-- Navbar toggler button for mobile devices. -->
       <button
         class="navbar-toggler"
         type="button"
@@ -29,6 +33,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbar">
         <div class="navbar-nav">
+          <!-- Conditional navigation links based on user authentication status. -->
           {% if user.is_authenticated %}
           <a class="nav-item nav-link" id="home" href="/">Home</a>
           <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
@@ -40,25 +45,31 @@
       </div>
     </nav>
 
-    {% with messages = get_flashed_messages(with_categories=true) %} {% if
-    messages %} {% for category, message in messages %} {% if category ==
-    'error' %}
+    <!-- Display flash messages (error or success) if available. -->
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %} {% if category == 'error' %}
     <div class="alert alert-danger alter-dismissable fade show" role="alert">
+      <!-- Display the error message. -->
       {{ message }}
+      <!-- Close button for dismissing the alert. -->
       <button type="button" class="close" data-dismiss="alert">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     {% else %}
     <div class="alert alert-success alter-dismissable fade show" role="alert">
+      <!-- Display the success message. -->
       {{ message }}
+      <!-- Close button for dismissing the alert. -->
       <button type="button" class="close" data-dismiss="alert">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     {% endif %} {% endfor %} {% endif %} {% endwith %}
 
+    <!-- Container for the main content. -->
     <div class="container">{% block content %} {% endblock %}</div>
+
+    <!-- JavaScript libraries for functionality. -->
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -75,17 +86,18 @@
       crossorigin="anonymous"
     ></script>
 
-{% block javascript %}
+    <!-- Custom JavaScript for deleting notes. -->
+    {% block javascript %}
     <script type="text/javascript">
       function deleteNote(noteId) {
-  fetch("/delete-note", {
-    method: "POST",
-    body: JSON.stringify({ noteId: noteId }),
-  }).then((_res) => {
-    window.location.href = "/";
-  });
-  }
-</script>
-{% endblock %}
+        fetch("/delete-note", {
+          method: "POST",
+          body: JSON.stringify({ noteId: noteId }),
+        }).then((_res) => {
+          window.location.href = "/";
+        });
+      }
+    </script>
+    {% endblock %}
   </body>
 </html>
